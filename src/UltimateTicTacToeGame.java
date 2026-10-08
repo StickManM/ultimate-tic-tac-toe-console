@@ -19,6 +19,7 @@ public class UltimateTicTacToeGame {
     public void setPlaceAnywhere(boolean placeAnywhere) {
         this.placeAnywhere = placeAnywhere;
     }
+    //Resolve?
 
     public boolean canPlaceAnywhere() {
         return placeAnywhere;
