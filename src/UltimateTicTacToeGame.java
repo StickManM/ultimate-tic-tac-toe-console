@@ -43,6 +43,93 @@ public class UltimateTicTacToeGame {
         return box;
     }
 
+    public int getBoxNum(int row, int column) {
+        switch (row) {
+            case 1:
+                switch (column) {
+                    case 1:
+                        return 1;
+                    case 2:
+                        return 2;
+                    case 3:
+                        return 3;
+                }
+            case 2:
+                switch (column) {
+                    case 1:
+                        return 4;
+                    case 2:
+                        return 5;
+                    case 3:
+                        return 6;
+                }
+            case 3:
+                switch (column) {
+                    case 1:
+                        return 7;
+                    case 2:
+                        return 8;
+                    case 3:
+                        return 9;
+                }
+            case 4:
+                switch (column) {
+                    case 1:
+                        return 1;
+                    case 2:
+                        return 2;
+                    case 3:
+                        return 3;
+                }
+            case 5:
+                switch (column) {
+                    case 1:
+                        return 4;
+                    case 2:
+                        return 5;
+                    case 3:
+                        return 6;
+                }
+            case 6:
+                switch (column) {
+                    case 1:
+                        return 7;
+                    case 2:
+                        return 8;
+                    case 3:
+                        return 9;
+                }
+            case 7:
+                switch (column) {
+                    case 1:
+                        return 1;
+                    case 2:
+                        return 2;
+                    case 3:
+                        return 3;
+                }
+            case 8:
+                switch (column) {
+                    case 1:
+                        return 4;
+                    case 2:
+                        return 5;
+                    case 3:
+                        return 6;
+                }
+            case 9:
+                switch (column) {
+                    case 1:
+                        return 7;
+                    case 2:
+                        return 8;
+                    case 3:
+                        return 9;
+                }
+        }
+        return 0;
+    }
+
 
 
     public String toString() {
