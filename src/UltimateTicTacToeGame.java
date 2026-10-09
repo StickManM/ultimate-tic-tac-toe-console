@@ -53,7 +53,7 @@ public class UltimateTicTacToeGame {
             for (int i = 0; i < 3; i++) {
                 for (int j = 0; j < 3; j++) {
                     if (box[i][j].equals(strmove)) {
-                        System.out.println(box[i][j]);
+                        //System.out.println(box[i][j]);
                         return (i * 3) + j + 1;
 
                     }
