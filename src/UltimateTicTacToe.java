@@ -47,6 +47,7 @@ public class UltimateTicTacToe
                 game.setPlaceAnywhere(false);
                 lastSpotArr = spotArr;
                 System.out.println(game);
+                System.out.println(game.getValidBox(lastSpotArr));
 
                 while (true) {
                     System.out.println("Input O's spot (row column):");
@@ -81,6 +82,7 @@ public class UltimateTicTacToe
                 game.setPlaceAnywhere(false);
                 lastSpotArr = spotArr;
                 System.out.println(game);
+                System.out.println(game.getValidBox(lastSpotArr));
                 //game.getBox(1, 3);
             }
             catch (Exception ArrayIndexOutOfBoundsException) {

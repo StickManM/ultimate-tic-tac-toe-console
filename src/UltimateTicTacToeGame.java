@@ -2,10 +2,13 @@ public class UltimateTicTacToeGame {
     private String[][] board;
     //private String[][] correspondingBox;
     private boolean placeAnywhere;
+    //private int[][][] boxArr;
+   // private String[][] box1Arr = new String[3][3];
 
     public UltimateTicTacToeGame() {
         board = new String[9][9];
         placeAnywhere = true;
+
     }
 
     public void setBoard(String[][] board) {
@@ -24,7 +27,7 @@ public class UltimateTicTacToeGame {
     public boolean canPlaceAnywhere() {
         return placeAnywhere;
     }
-    public String[][] getBox(int row, int column) {
+    /*public String[][] getBox(int row, int column) {
         String[][] box = new String[3][3];
         int c;
         if (column == 3) {
@@ -41,6 +44,41 @@ public class UltimateTicTacToeGame {
             }
         }
         return box;
+    }*/
+
+    public int getValidBox(char[] move) {
+        String strmove = new String(move);
+        for (int h = 1; h <= 9; h++) {
+            String[][] box = generateBoxArray(h);
+            for (int i = 0; i < 3; i++) {
+                for (int j = 0; j < 3; j++) {
+                    if (box[i][j].equals(strmove)) {
+                        System.out.println(box[i][j]);
+                        return (i * 3) + j + 1;
+
+                    }
+                }
+            }
+        }
+        return 0;
+    }
+
+    public static String[][] generateBoxArray(int boxNum) {
+        String[][] boxArr = new String[3][3];
+
+
+        int rowOffset = ((boxNum-1)/3) *3;
+        int columnOffset = ((boxNum-1)%3) * 3;
+
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                boxArr[i][j] = (1+rowOffset+i) + " " + (1+columnOffset+j);
+                //System.out.println(boxArr[i][j]);
+            }
+        }
+
+        return boxArr;
+
     }
 
     public int getBoxNum(int row, int column) {
