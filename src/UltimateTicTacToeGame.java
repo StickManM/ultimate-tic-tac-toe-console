@@ -37,96 +37,40 @@ public class UltimateTicTacToeGame {
         for (int i = 1; i <= 3; i ++) {
             for (int j = 0; j <= 2; j ++) {
                 //box[i][j] =  board[i * row][j + (column * 2)];
-                System.out.print(board[i * row][j + (c) -1] + " ");
+                //System.out.print(board[i * row][j + (c) -1] + " ");
             }
         }
         return box;
     }
 
     public int getBoxNum(int row, int column) {
-        switch (row) {
-            case 1:
-                switch (column) {
-                    case 1:
-                        return 1;
-                    case 2:
-                        return 2;
-                    case 3:
-                        return 3;
-                }
-            case 2:
-                switch (column) {
-                    case 1:
-                        return 4;
-                    case 2:
-                        return 5;
-                    case 3:
-                        return 6;
-                }
-            case 3:
-                switch (column) {
-                    case 1:
-                        return 7;
-                    case 2:
-                        return 8;
-                    case 3:
-                        return 9;
-                }
-            case 4:
-                switch (column) {
-                    case 1:
-                        return 1;
-                    case 2:
-                        return 2;
-                    case 3:
-                        return 3;
-                }
-            case 5:
-                switch (column) {
-                    case 1:
-                        return 4;
-                    case 2:
-                        return 5;
-                    case 3:
-                        return 6;
-                }
-            case 6:
-                switch (column) {
-                    case 1:
-                        return 7;
-                    case 2:
-                        return 8;
-                    case 3:
-                        return 9;
-                }
-            case 7:
-                switch (column) {
-                    case 1:
-                        return 1;
-                    case 2:
-                        return 2;
-                    case 3:
-                        return 3;
-                }
-            case 8:
-                switch (column) {
-                    case 1:
-                        return 4;
-                    case 2:
-                        return 5;
-                    case 3:
-                        return 6;
-                }
-            case 9:
-                switch (column) {
-                    case 1:
-                        return 7;
-                    case 2:
-                        return 8;
-                    case 3:
-                        return 9;
-                }
+
+        if (row == 1 || row == 2 || row == 3) {
+            if (column == 1 || column == 2 || column == 3) {
+                return 1;
+            } else if (column == 4 || column == 5 || column == 6) {
+                return 2;
+            } else if (column == 7 || column == 8 || column == 9) {
+                return 3;
+            }
+        } else if (row == 4 || row == 5 || row == 6) {
+            if (column == 1 || column == 2 || column == 3) {
+                return 4;
+            } else if (column == 4 || column == 5 || column == 6) {
+                return 5;
+            } else if (column == 7 || column == 8 || column == 9) {
+                return 6;
+            }
+        } else if (row == 7 || row == 8 || row == 9) {
+            if (column == 1 || column == 2 || column == 3) {
+                return 7;
+            } else if (column == 4 || column == 5 || column == 6) {
+                return 8;
+            } else if (column == 7 || column == 8 || column == 9) {
+                return 9;
+            }
         }
+
         return 0;
     }
 
