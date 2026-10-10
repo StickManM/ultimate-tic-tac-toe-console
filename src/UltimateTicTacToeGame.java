@@ -81,6 +81,25 @@ public class UltimateTicTacToeGame {
 
     }
 
+    public boolean checkBoxFull(int boxNum) {
+        String[][] box = generateBoxArray(boxNum);
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                //String posStr = box[i][j];
+                char[] posArr = box[i][j].toCharArray();
+                int row = posArr[0] - '0';
+                int column = posArr[2] - '0';
+
+                if (board[row-1][column-1] == null) {
+                    //System.out.println(box[i][j]);
+                    return false;
+
+                }
+            }
+        }
+        return true;
+    }
+
     public int getBoxNum(int row, int column) {
 
         if (row == 1 || row == 2 || row == 3) {
