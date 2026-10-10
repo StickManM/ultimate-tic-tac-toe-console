@@ -23,7 +23,6 @@ public class UltimateTicTacToe
                         spot = input.nextLine();
                         spotArr = spot.toCharArray();
 
-
                         if (!firstTurn) {
                             validBox = game.getValidBox(lastSpotArr);
 
@@ -32,14 +31,12 @@ public class UltimateTicTacToe
                             }
                         }
 
-
                         if (spotArr[1] == '-') {
                             game.setPlaceAnywhere(true);
 
                         }
 
                         if (game.canPlaceAnywhere()) {
-                            //game.setPlaceAnywhere(false);
                             String[][] gameArr = game.getBoard();
                             if (gameArr[(spotArr[0] - '0') - 1][(spotArr[2] - '0') - 1] != null) {
                                 System.out.println("INVALID MOVE: THAT SPOT IS TAKEN");
@@ -74,7 +71,6 @@ public class UltimateTicTacToe
                     System.out.println(game);
                     firstTurn = false;
                     turn = false;
-                    // System.out.println(game.getValidBox(lastSpotArr));
                 }
 
                 if (!turn) {
@@ -106,7 +102,6 @@ public class UltimateTicTacToe
                             game.setBoard(gameArr);
                             break;
                         } else {
-                            //validBox = game.getValidBox(lastSpotArr);
                             if (game.getBoxNum((spotArr[0] - '0'), (spotArr[2] - '0')) != validBox) {
                                 System.out.println("INVALID SPOT: MUST BE IN BOX NUMBER " + validBox);
                             } else {
@@ -128,8 +123,6 @@ public class UltimateTicTacToe
                     lastSpotArr[1] = ' ';
                     lastSpotArr[2] = spotArr[2];
                     System.out.println(game);
-                    //System.out.println(game.getValidBox(lastSpotArr));
-                    //game.getBox(1, 3);
                     turn = true;
 
                 }

@@ -1,9 +1,6 @@
 public class UltimateTicTacToeGame {
     private String[][] board;
-    //private String[][] correspondingBox;
     private boolean placeAnywhere;
-    //private int[][][] boxArr;
-   // private String[][] box1Arr = new String[3][3];
 
     public UltimateTicTacToeGame() {
         board = new String[9][9];
@@ -22,29 +19,10 @@ public class UltimateTicTacToeGame {
     public void setPlaceAnywhere(boolean placeAnywhere) {
         this.placeAnywhere = placeAnywhere;
     }
-    //Resolve?
 
     public boolean canPlaceAnywhere() {
         return placeAnywhere;
     }
-    /*public String[][] getBox(int row, int column) {
-        String[][] box = new String[3][3];
-        int c;
-        if (column == 3) {
-            c = 7;
-        } else if (column == 2) {
-            c = 3;
-        } else {
-            c = 0;
-        }
-        for (int i = 1; i <= 3; i ++) {
-            for (int j = 0; j <= 2; j ++) {
-                //box[i][j] =  board[i * row][j + (column * 2)];
-                //System.out.print(board[i * row][j + (c) -1] + " ");
-            }
-        }
-        return box;
-    }*/
 
     public int getValidBox(char[] move) {
         String strmove = new String(move);
