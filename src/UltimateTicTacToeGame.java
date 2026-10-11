@@ -42,8 +42,8 @@ public class UltimateTicTacToeGame {
     }
 
     public static String[][] generateBoxArray(int boxNum) {
-        String[][] boxArr = new String[3][3];
 
+        String[][] boxArr = new String[3][3];
 
         int rowOffset = ((boxNum-1)/3) *3;
         int columnOffset = ((boxNum-1)%3) * 3;
@@ -60,7 +60,14 @@ public class UltimateTicTacToeGame {
     }
 
     public boolean checkBoxFull(int boxNum) {
+
+        if (boxNum < 1 || boxNum > 9) {
+            return true;
+        }
+
         String[][] box = generateBoxArray(boxNum);
+
+
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 //String posStr = box[i][j];
@@ -107,6 +114,57 @@ public class UltimateTicTacToeGame {
         }
 
         return 0;
+    }
+
+    /*public String[][] boxValues(int boxNum) {
+        String[][] boxValues = new String[3][3];
+
+        int rowOffset = ((boxNum-1)/3) * 3;
+        int columnOffset = ((boxNum-1)%3) * 3;
+
+        for (int i = 0; i < 3; i ++) {
+            for (int j = 0; j < 3; j++) {
+                boxValues[i][j] = (1+rowOffset+i) + " " + (1+columnOffset+j);
+                //System.out.println(boxValues[i][j]);
+            }
+        }
+
+        return boxValues;
+    }*/
+
+    public boolean isBoxWinner(String player, int boxNum) {
+
+        if (boxNum < 1 || boxNum > 9) return false;
+
+
+        int rowStart = ((boxNum-1) / 3) * 3;
+        int columnStart = ((boxNum-1) % 3) * 3;
+
+        //Horizontal
+        for (int i = 0; i < 3; i++) {
+            if (player.equals(board[rowStart+i][columnStart]) && player.equals(board[rowStart+i][columnStart+1]) && player.equals(board[rowStart+i][columnStart+2])) {
+                return true;
+            }
+        }
+
+        //Vertical
+        for (int j = 0; j < 3; j++) {
+            if (player.equals(board[rowStart][j+columnStart]) && player.equals(board[rowStart+1][j+columnStart]) && player.equals(board[rowStart+2][j+columnStart])) {
+                return true;
+            }
+        }
+
+        //Diagonal
+        if (player.equals(board[rowStart+1][columnStart+1])) {
+            if (player.equals(board[rowStart][columnStart]) && player.equals(board[rowStart + 2][columnStart + 2])) {
+                return true;
+            } else if (player.equals(board[rowStart][columnStart + 2]) &&  player.equals(board[rowStart + 2][columnStart])) {
+                return true;
+            }
+        }
+
+
+        return false;
     }
 
 

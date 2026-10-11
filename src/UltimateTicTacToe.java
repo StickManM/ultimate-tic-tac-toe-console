@@ -17,6 +17,8 @@ public class UltimateTicTacToe
                 String spot;
                 char[] spotArr;
 
+                //game.boxValues(5);
+
                 if (turn) {
                     while (true) {
                         System.out.println("Input X's spot (row column):");
@@ -71,6 +73,11 @@ public class UltimateTicTacToe
                     System.out.println(game);
                     firstTurn = false;
                     turn = false;
+
+                    if (game.isBoxWinner(" X ", (game.getBoxNum((lastSpotArr[0] - '0'), (lastSpotArr[2] - '0'))))) {
+                        System.out.println("X HAS WON BOX NUMBER " + (game.getBoxNum((lastSpotArr[0] - '0'), (lastSpotArr[2] - '0'))));
+                    }
+
                 }
 
                 if (!turn) {
@@ -125,10 +132,16 @@ public class UltimateTicTacToe
                     System.out.println(game);
                     turn = true;
 
+                    if (game.isBoxWinner(" O ", (game.getBoxNum((lastSpotArr[0] - '0'), (lastSpotArr[2] - '0'))))) {
+                        System.out.println("O HAS WON BOX NUMBER " + (game.getBoxNum((lastSpotArr[0] - '0'), (lastSpotArr[2] - '0'))));
+                    }
+
+
                 }
             }
-            catch (Exception ArrayIndexOutOfBoundsException) {
+            catch (Exception e) {
                 System.out.println("ERROR: IMPROPER ROW COLUMN");
+                //e.printStackTrace();
             }
 
             finally {
