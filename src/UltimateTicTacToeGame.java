@@ -1,9 +1,11 @@
 public class UltimateTicTacToeGame {
     private String[][] board;
+    private String[][] unavailableBoxes;
     private boolean placeAnywhere;
 
     public UltimateTicTacToeGame() {
         board = new String[9][9];
+        unavailableBoxes = new String[9][2];
         placeAnywhere = true;
 
     }
@@ -41,6 +43,26 @@ public class UltimateTicTacToeGame {
         return 0;
     }
 
+    public void addUnavailableBox(int boxNum, String player) {
+        for (int i = 0; i < 9; i ++) {
+            if (unavailableBoxes[i][0] == null) {
+                unavailableBoxes[i][0] = ("" + boxNum);
+                unavailableBoxes[i][1] = player;
+                return;
+            }
+        }
+    }
+
+    public boolean isUnavailableBox(int boxNum) {
+        for (int i = 0; i < 9; i ++) {
+            if (("" + boxNum).equals(unavailableBoxes[i][0])) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public static String[][] generateBoxArray(int boxNum) {
 
         String[][] boxArr = new String[3][3];
@@ -65,6 +87,10 @@ public class UltimateTicTacToeGame {
             return true;
         }
 
+        if (isUnavailableBox(boxNum)) {
+            return true;
+        }
+
         String[][] box = generateBoxArray(boxNum);
 
 
@@ -82,6 +108,7 @@ public class UltimateTicTacToeGame {
                 }
             }
         }
+        addUnavailableBox(boxNum, "TIE");
         return true;
     }
 
@@ -163,6 +190,48 @@ public class UltimateTicTacToeGame {
             }
         }
 
+
+        return false;
+    }
+
+    public boolean isWinner(String player) {
+
+        String listBoxes = "";
+
+        for (int i = 0; i < 9; i++) {
+            if (unavailableBoxes[i][0] != null && player.equals(unavailableBoxes[i][1])) {
+                listBoxes += unavailableBoxes[i][0] + " ";
+            }
+        }
+
+        if (listBoxes.isBlank()) {
+            return false;
+        }
+
+        //Horizontal
+        if (listBoxes.contains("1") && listBoxes.contains("2") && listBoxes.contains("3")) {
+            return true;
+        } else if (listBoxes.contains("4") && listBoxes.contains("5") && listBoxes.contains("6")) {
+            return true;
+        } else if (listBoxes.contains("7") && listBoxes.contains("8") && listBoxes.contains("9")) {
+            return true;
+        }
+
+        //Vertical
+        if (listBoxes.contains("1") && listBoxes.contains("4") && listBoxes.contains("7")) {
+            return true;
+        } else if (listBoxes.contains("2") && listBoxes.contains("5") && listBoxes.contains("8")) {
+            return true;
+        } else if (listBoxes.contains("3") && listBoxes.contains("6") && listBoxes.contains("9")) {
+            return true;
+        }
+
+        //Diagonal
+        if (listBoxes.contains("1") && listBoxes.contains("5") && listBoxes.contains("9")) {
+            return true;
+        } else if (listBoxes.contains("3") && listBoxes.contains("5") && listBoxes.contains("7")) {
+            return true;
+        }
 
         return false;
     }

@@ -40,7 +40,7 @@ public class UltimateTicTacToe
 
                         if (game.canPlaceAnywhere()) {
                             String[][] gameArr = game.getBoard();
-                            if (gameArr[(spotArr[0] - '0') - 1][(spotArr[2] - '0') - 1] != null) {
+                            if (gameArr[(spotArr[0] - '0') - 1][(spotArr[2] - '0') - 1] != null || game.isUnavailableBox((game.getBoxNum((spotArr[0] - '0'), (spotArr[2] - '0'))))) {
                                 System.out.println("INVALID MOVE: THAT SPOT IS TAKEN");
                                 continue;
                             }
@@ -54,7 +54,7 @@ public class UltimateTicTacToe
                             } else {
                                 System.out.println("VALID BOX: IS IN BOX NUMBER " + validBox);
                                 String[][] gameArr = game.getBoard();
-                                if (gameArr[(spotArr[0] - '0') - 1][(spotArr[2] - '0') - 1] != null) {
+                                if (gameArr[(spotArr[0] - '0') - 1][(spotArr[2] - '0') - 1] != null || game.isUnavailableBox((game.getBoxNum((spotArr[0] - '0'), (spotArr[2] - '0'))))) {
                                     System.out.println("INVALID MOVE: THAT SPOT IS TAKEN");
                                     continue;
                                 }
@@ -75,7 +75,13 @@ public class UltimateTicTacToe
                     turn = false;
 
                     if (game.isBoxWinner(" X ", (game.getBoxNum((lastSpotArr[0] - '0'), (lastSpotArr[2] - '0'))))) {
+                        game.addUnavailableBox((game.getBoxNum((lastSpotArr[0] - '0'), (lastSpotArr[2] - '0'))), " X ");
                         System.out.println("X HAS WON BOX NUMBER " + (game.getBoxNum((lastSpotArr[0] - '0'), (lastSpotArr[2] - '0'))));
+
+                        if (game.isWinner(" X ")) {
+                            System.out.println("X HAS WON THE GAME!");
+                            break;
+                        }
                     }
 
                 }
@@ -101,7 +107,7 @@ public class UltimateTicTacToe
                         if (game.canPlaceAnywhere()) {
                             //game.setPlaceAnywhere(false);
                             String[][] gameArr = game.getBoard();
-                            if (gameArr[(spotArr[0] - '0') - 1][(spotArr[2] - '0') - 1] != null) {
+                            if (gameArr[(spotArr[0] - '0') - 1][(spotArr[2] - '0') - 1] != null || game.isUnavailableBox((game.getBoxNum((spotArr[0] - '0'), (spotArr[2] - '0'))))) {
                                 System.out.println("INVALID MOVE: THAT SPOT IS TAKEN");
                                 continue;
                             }
@@ -114,7 +120,7 @@ public class UltimateTicTacToe
                             } else {
                                 System.out.println("VALID BOX: IS IN BOX NUMBER " + validBox);
                                 String[][] gameArr = game.getBoard();
-                                if (gameArr[(spotArr[0] - '0') - 1][(spotArr[2] - '0') - 1] != null) {
+                                if (gameArr[(spotArr[0] - '0') - 1][(spotArr[2] - '0') - 1] != null || game.isUnavailableBox((game.getBoxNum((spotArr[0] - '0'), (spotArr[2] - '0'))))) {
                                     System.out.println("INVALID MOVE: THAT SPOT IS TAKEN");
                                     continue;
                                 }
@@ -133,7 +139,13 @@ public class UltimateTicTacToe
                     turn = true;
 
                     if (game.isBoxWinner(" O ", (game.getBoxNum((lastSpotArr[0] - '0'), (lastSpotArr[2] - '0'))))) {
+                        game.addUnavailableBox((game.getBoxNum((lastSpotArr[0] - '0'), (lastSpotArr[2] - '0'))), " O ");
                         System.out.println("O HAS WON BOX NUMBER " + (game.getBoxNum((lastSpotArr[0] - '0'), (lastSpotArr[2] - '0'))));
+
+                        if (game.isWinner(" O ")) {
+                            System.out.println("O HAS WON THE GAME!");
+                            break;
+                        }
                     }
 
 
