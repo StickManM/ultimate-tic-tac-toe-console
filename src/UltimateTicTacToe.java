@@ -4,7 +4,15 @@ public class UltimateTicTacToe
 {
     public static void main(String[] args)
     {
+        //Introduction and rules
         System.out.println("Welcome to Ultimate Tic Tac Toe!");
+        System.out.println();
+        System.out.println("Here are the rules: ");
+        System.out.println("Just like in regular tic-tac-toe, the two players (X and O) take turns. The game starts with either X or O playing wherever they want in any of the 81 empty spots. On each subsequent move, the players must play in the section of the larger board corresponding to the previous move's location within the smaller board it was played in.");
+        System.out.println("If a move is played so that it wins a small board by the rules of normal tic-tac-toe, then the entire small board is marked as won by the player in the larger board. Once a small board is won by a player or it is filled completely, no more moves can be played in that board, and a player sent to that board may choose any other valid board to play in.");
+        System.out.println("The game ends when either a player wins the larger board or there are no playable small boards remaining, in which case the game is a draw");
+
+        //Initialization of Variables and Whatnot
         Scanner input = new Scanner(System.in);
         UltimateTicTacToeGame game = new UltimateTicTacToeGame();
         System.out.println(game);
@@ -12,12 +20,12 @@ public class UltimateTicTacToe
         int validBox = 0;
         boolean firstTurn = true;
         boolean turn = true;
+
+        //Main gameplay while loop
         while (true) {
             try {
                 String spot;
                 char[] spotArr;
-
-                //game.boxValues(5);
 
                 if (turn) {
                     while (true) {
@@ -75,7 +83,6 @@ public class UltimateTicTacToe
                     turn = false;
 
                     if (game.isBoxWinner(" X ", (game.getBoxNum((lastSpotArr[0] - '0'), (lastSpotArr[2] - '0'))))) {
-                        game.addUnavailableBox((game.getBoxNum((lastSpotArr[0] - '0'), (lastSpotArr[2] - '0'))), " X ");
                         System.out.println("X HAS WON BOX NUMBER " + (game.getBoxNum((lastSpotArr[0] - '0'), (lastSpotArr[2] - '0'))));
 
                         if (game.isWinner(" X ")) {
@@ -139,7 +146,6 @@ public class UltimateTicTacToe
                     turn = true;
 
                     if (game.isBoxWinner(" O ", (game.getBoxNum((lastSpotArr[0] - '0'), (lastSpotArr[2] - '0'))))) {
-                        game.addUnavailableBox((game.getBoxNum((lastSpotArr[0] - '0'), (lastSpotArr[2] - '0'))), " O ");
                         System.out.println("O HAS WON BOX NUMBER " + (game.getBoxNum((lastSpotArr[0] - '0'), (lastSpotArr[2] - '0'))));
 
                         if (game.isWinner(" O ")) {

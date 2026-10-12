@@ -1,8 +1,13 @@
 public class UltimateTicTacToeGame {
+
+    //Box Numbers, Row Numbers, and Column Numbers are always indexed from 1 - 9. Only indexed 0 - 8 when acessing the array (but usually automatically converted by the code).
+
+    //Instance Variables
     private String[][] board;
     private String[][] unavailableBoxes;
     private boolean placeAnywhere;
 
+    //Constructor
     public UltimateTicTacToeGame() {
         board = new String[9][9];
         unavailableBoxes = new String[9][2];
@@ -10,18 +15,22 @@ public class UltimateTicTacToeGame {
 
     }
 
+    //Sets the array of the board
     public void setBoard(String[][] board) {
         this.board = board;
     }
 
+    //Returns the array of the board
     public String[][] getBoard() {
         return board;
     }
 
+    //Changes the player's ability to move anywhere using the given boolean. Given boolean of true = yes the player can play anywhere.
     public void setPlaceAnywhere(boolean placeAnywhere) {
         this.placeAnywhere = placeAnywhere;
     }
 
+    //Checks if the player can make their move anywhere
     public boolean canPlaceAnywhere() {
         return placeAnywhere;
     }
@@ -43,6 +52,7 @@ public class UltimateTicTacToeGame {
         return 0;
     }
 
+    //Adds unavailable boxes
     public void addUnavailableBox(int boxNum, String player) {
         for (int i = 0; i < 9; i ++) {
             if (unavailableBoxes[i][0] == null) {
@@ -53,6 +63,7 @@ public class UltimateTicTacToeGame {
         }
     }
 
+    //Returns whether or not a box is unavailable. Returns true if it is unavailable.
     public boolean isUnavailableBox(int boxNum) {
         for (int i = 0; i < 9; i ++) {
             if (("" + boxNum).equals(unavailableBoxes[i][0])) {
@@ -63,6 +74,7 @@ public class UltimateTicTacToeGame {
         return false;
     }
 
+    //Creates an array of possible values in row column that would correspond the given box number (both are indexed 1-9)
     public static String[][] generateBoxArray(int boxNum) {
 
         String[][] boxArr = new String[3][3];
@@ -81,6 +93,7 @@ public class UltimateTicTacToeGame {
 
     }
 
+    //Checks if all the spots are full within a box. Automatically adds the box to the unavailableBox list and returns true if the box is full.
     public boolean checkBoxFull(int boxNum) {
 
         if (boxNum < 1 || boxNum > 9) {
@@ -112,6 +125,7 @@ public class UltimateTicTacToeGame {
         return true;
     }
 
+    //Returns an int value of the box number given the int value of the row and column (indexed 1 - 9 for both input and output)
     public int getBoxNum(int row, int column) {
 
         if (row == 1 || row == 2 || row == 3) {
@@ -143,33 +157,23 @@ public class UltimateTicTacToeGame {
         return 0;
     }
 
-    /*public String[][] boxValues(int boxNum) {
-        String[][] boxValues = new String[3][3];
 
-        int rowOffset = ((boxNum-1)/3) * 3;
-        int columnOffset = ((boxNum-1)%3) * 3;
-
-        for (int i = 0; i < 3; i ++) {
-            for (int j = 0; j < 3; j++) {
-                boxValues[i][j] = (1+rowOffset+i) + " " + (1+columnOffset+j);
-                //System.out.println(boxValues[i][j]);
-            }
-        }
-
-        return boxValues;
-    }*/
-
+    //Checks if a given player has won a given box. Returns true if the given player won the given box.
     public boolean isBoxWinner(String player, int boxNum) {
 
         if (boxNum < 1 || boxNum > 9) return false;
+
+        if (isUnavailableBox(boxNum)) return false;
 
 
         int rowStart = ((boxNum-1) / 3) * 3;
         int columnStart = ((boxNum-1) % 3) * 3;
 
+
         //Horizontal
         for (int i = 0; i < 3; i++) {
             if (player.equals(board[rowStart+i][columnStart]) && player.equals(board[rowStart+i][columnStart+1]) && player.equals(board[rowStart+i][columnStart+2])) {
+                addUnavailableBox(boxNum, player);
                 return true;
             }
         }
@@ -177,6 +181,7 @@ public class UltimateTicTacToeGame {
         //Vertical
         for (int j = 0; j < 3; j++) {
             if (player.equals(board[rowStart][j+columnStart]) && player.equals(board[rowStart+1][j+columnStart]) && player.equals(board[rowStart+2][j+columnStart])) {
+                addUnavailableBox(boxNum, player);
                 return true;
             }
         }
@@ -184,8 +189,10 @@ public class UltimateTicTacToeGame {
         //Diagonal
         if (player.equals(board[rowStart+1][columnStart+1])) {
             if (player.equals(board[rowStart][columnStart]) && player.equals(board[rowStart + 2][columnStart + 2])) {
+                addUnavailableBox(boxNum, player);
                 return true;
             } else if (player.equals(board[rowStart][columnStart + 2]) &&  player.equals(board[rowStart + 2][columnStart])) {
+                addUnavailableBox(boxNum, player);
                 return true;
             }
         }
@@ -194,6 +201,7 @@ public class UltimateTicTacToeGame {
         return false;
     }
 
+    //Checks if the given player has won by using the unavailableBoxes array to see what boxes the player has won and if any of those won boxes are three in a row.
     public boolean isWinner(String player) {
 
         String listBoxes = "";
@@ -237,7 +245,7 @@ public class UltimateTicTacToeGame {
     }
 
 
-
+    //Prints out the board in the Ultimate Tic Tac Toe Style
     public String toString() {
         String result = "";
         int count = 0;
